@@ -15,9 +15,12 @@ new class extends Component {
 <div class="table-container p-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0">Users List</h2>
-        {{--                <a href="{{ route('product.create') }}" class="btn btn-primary">Add Products</a>--}}
         <a href="{{ route('users.create') }}" class="btn btn-primary">Add Users</a>
+
     </div>
+    @if(session('success'))
+        <p>{{ session('success') }}</p>
+    @endif
     <div class="table-responsive">
         @if($users->count() > 0)
             <table class="table table-striped table-hover align-middle">

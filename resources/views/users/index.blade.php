@@ -54,6 +54,7 @@
             <h5 class="ms-3 mb-0">User List</h5>
         </div>
     </nav>
+
     <livewire:user :users="$users" />
 </div>
 @livewireScripts

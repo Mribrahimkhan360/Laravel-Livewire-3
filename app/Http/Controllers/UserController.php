@@ -3,23 +3,43 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserStoreRequest;
+use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    protected $userService;
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     //
     public function index()
     {
-        return view('users.index');
+        $users = $this->userService->getAllUsers();
+        return view('users.index',compact('users'));
     }
     public function create()
     {
-
+        return view('users.create');
     }
 
-    public function store()
+    public function store(UserStoreRequest $request)
     {
+        $this->userService->createUser($request->validated());
+        return redirect()->back()->with('success','User Create Successfully');
 
+
+
+//        $data = $request->only(['name', 'email', 'password', 'flag']);
+//        $data['password'] = bcrypt($data['password']);
+//
+//        $user = $this->userService->createUser($data);
+//
+//        return response()->json($user, 201);
     }
 
     public function show()
@@ -38,8 +58,9 @@ class UserController extends Controller
 
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-
+        $this->userService->deleteUser($id);
+        return redirect()->back()->with('success','User delete successfully!');
     }
 }

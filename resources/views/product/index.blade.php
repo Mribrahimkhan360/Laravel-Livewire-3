@@ -31,6 +31,11 @@
                     Product
                 </a>
             </li>
+            <li>
+                <a href="{{route('users.index')}}" class="nav-link text-white">
+                    User
+                </a>
+            </li>
 
             <li>
 {{--                <form action="{{ route('logout') }}" method="POST">--}}

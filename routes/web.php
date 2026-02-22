@@ -19,9 +19,12 @@ Route::get('/',[AuthController::class,'index']);
 Route::post('/',[AuthController::class,'authLogin'])->name('auth.login');
 Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 Route::middleware('auth')->group(function(){
+
+    // AuthController
     Route::get('/dashboard',[AuthController::class,'dashboard'])->name('dashboard');
     Route::get('/product/create',[ProductController::class,'create'])->name('product.create');
     Route::get('/product',[ProductController::class,'product'])->name('product');
-    Route::resource('users',UserController::class);
 
+    // UserController
+    Route::resource('users',UserController::class);
 });

@@ -32,7 +32,7 @@
         </li>
 
         <li>
-            <a href="{{route('user')}}" class="nav-link text-white">
+            <a href="{{route('users.index')}}" class="nav-link text-white">
                 User
             </a>
         </li>

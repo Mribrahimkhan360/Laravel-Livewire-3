@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    @livewireStyles
+</head>
+<body>
+<div class="d-flex" id="wrapper">
+    <div class="bg-dark text-white p-3" id="sidebar-wrapper"
+         style="min-width: 221px; min-height: 100vh;">
+
+        <h4 class="text-center mb-4">Dashboard</h4>
+
+        <ul class="nav nav-pills flex-column mb-auto">
+
+            <li class="nav-item">
+                <a href="/dashboard" class="nav-link text-white">
+                    <i class="bi bi-house-door me-3"></i> Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="{{route('product')}}" class="nav-link text-white">
+                    <i class="bi bi-person me-3"></i>Product
+                </a>
+            </li>
+
+            <li>
+                <a href="{{route('users.index')}}" class="nav-link text-white">
+                    <i class="bi bi-person me-3"></i>User
+                </a>
+            </li>
+
+            <li>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="nav-link text-white border-0 bg-transparent">
+                        <i class="bi bi-gear me-3"></i> Logout
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <div class="flex-grow-1" id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container-fluid">
+                <a href=""></a>
+                <h5 class="ms-3 mb-0">Edit User</h5>
+            </div>
+        </nav>
+        <div class="container my-5">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white flex">
+                    <h4 class="mb-0">Edit User now</h4>
+                    <p>
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show text-green-800" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
+                        </p>
+                        <p>
+                        @if($errors->any())
+                            @foreach($errors->all() as $error)
+                                <p class="alert alert-success alert-dismissible fade show ">
+                                    {{ $error }}
+                                </p>
+                                @endforeach
+                                @endif
+                                </p>
+                </div>
+
+                <div class="card-body">
+                    <form action="{{ route('users.update', $user) }}" method="POST">
+                        <div class="row">
+                            <!-- Product Name -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">User Name</label>
+                                <input type="text" name="name" class="form-control" value="{{ $user->name }}"/>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">User Email</label>
+                                <input type="text" name="email" class="form-control"  value="{{ $user->email }}" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="flag" class="form-label">User Type</label>
+                                <select name="flag" id="flag" class="form-control">
+                                    <option value="">-- Select User Type --</option>
+                                    <option value="admin" {{ $user->flag == 'admin' ? 'selected' : '' }}>Admin</option>
+                                    <option value="custom_user" {{ $user->flag == 'custom_user' ? 'selected' : '' }}>Custom User</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">User Password</label>
+                                <input type="password" name="password" class="form-control" placeholder="Update Your Password"/>
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="text-end">
+                            <button type="reset" class="btn btn-secondary">Reset</button>
+                            <button type="submit" class="btn btn-success">Update User</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@livewireScripts
+</body>
+</html>

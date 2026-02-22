@@ -35,6 +35,10 @@ class UserService
     {
         return $this->userRepository ->all();
     }
+    public function findUserById($id)
+    {
+        return $this->userRepository->find($id);
+    }
     public function deleteUser($id)
     {
         return $this->userRepository->delete($id);

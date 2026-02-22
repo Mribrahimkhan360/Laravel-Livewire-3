@@ -47,10 +47,10 @@ class UserController extends Controller
 
     }
 
-    public function edit()
+    public function edit($id)
     {
-
-
+        $user = $this->userService->findUserById($id);
+        return view('users.edit',compact('user'));
     }
 
     public function update()

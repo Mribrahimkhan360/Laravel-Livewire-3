@@ -78,7 +78,9 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('users.update', $user) }}" method="POST">
+                    <form action="{{ route('users.update', $user->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="row">
                             <!-- Product Name -->
                             <div class="col-md-6 mb-3">

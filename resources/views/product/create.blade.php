@@ -29,6 +29,11 @@
                     <i class="bi bi-person me-3"></i>Product
                 </a>
             </li>
+            <li>
+                <a href="{{route('users.index')}}" class="nav-link text-white">
+                    <i class="bi bi-person me-3"></i>Users
+                </a>
+            </li>
 
             <li>
                 {{--                <form action="{{ route('logout') }}" method="POST">--}}

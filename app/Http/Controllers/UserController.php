@@ -53,9 +53,11 @@ class UserController extends Controller
         return view('users.edit',compact('user'));
     }
 
-    public function update()
+    public function update(UserStoreRequest $request, $id)
     {
-
+        $data = $request->validated();
+        $this->userService->updateUser($id,$data);
+        return redirect()->back()->with('success','Product updated successfully.');
     }
 
     public function destroy($id)

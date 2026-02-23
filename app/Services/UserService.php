@@ -39,6 +39,10 @@ class UserService
     {
         return $this->userRepository->find($id);
     }
+    public function updateUser($id, array $data)
+    {
+        return $this->userRepository->update($id,$data);
+    }
     public function deleteUser($id)
     {
         return $this->userRepository->delete($id);

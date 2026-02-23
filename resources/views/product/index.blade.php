@@ -61,7 +61,7 @@
 
         <div class="table-container p-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="mb-0">Products List</h2>
+                <h2 class="mb-0">Products Stock List</h2>
 {{--                <a href="{{ route('product.create') }}" class="btn btn-primary">Add Products</a>--}}
                 <a href="{{ route('product.create') }}" class="btn btn-primary">Add Products</a>
             </div>

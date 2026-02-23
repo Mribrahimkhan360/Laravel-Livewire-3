@@ -1,3 +1,6 @@
+php artisan vendor:publish --tag="permission-migrations"
+
+<br />
 # Spatie Laravel Permission — 4-Layer Architecture Guide
 
 > **Stack:** Laravel · Spatie Permission · Model → Repository (Contract + Eloquent) → Service → Controller (FormRequest)

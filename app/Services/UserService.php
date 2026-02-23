@@ -17,12 +17,12 @@ class UserService
 
     public function createUser(array $data)
     {
-        // যদি flag না দেওয়া হয়, default হবে Admin
+        // If no flag is given, the default will be Admin.
         if (!isset($data['flag'])) {
             $data['flag'] = 'admin';
         }
 
-        // flag শুধু "Admin" বা "custom_user" হতে পারবে
+        // flag can only be "Admin" or "custom_user"
         if (!in_array($data['flag'], ['admin', 'custom_user'])) {
             $data['flag'] = 'admin';
         }

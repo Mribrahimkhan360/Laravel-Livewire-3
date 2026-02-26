@@ -3,9 +3,9 @@
 
 namespace App\Repositories\Eloquent;
 use App\Models\Role;
-use App\Repositories\Contracts\RollRepositoryInterface;
+use App\Repositories\Contracts\RoleRepositoryInterface;
 
-class RollRepository implements RollRepositoryInterface
+class RoleRepository implements RoleRepositoryInterface
 {
     protected $model;
 
@@ -29,16 +29,17 @@ class RollRepository implements RollRepositoryInterface
         return $this->model->create($data);
     }
 
+
     public function update($id, array $data)
     {
-        $roll = $this->find($id);
-        $roll->update($data);
-        return $roll;
+        $role = $this->find($id);
+        $role->update($data);
+        return $role;
     }
 
     public function delete($id)
     {
-        $roll = $this->find($id);
-        return $roll->delete();
+        $role = $this->find($id);
+        return $role->delete();
     }
 }

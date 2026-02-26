@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\RollController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +32,6 @@ Route::middleware('auth')->group(function(){
     Route::resource('users',UserController::class);
 
     //RollController
-    Route::resource('rolls',RollController::class);
+    Route::resource('rolls',RoleController::class);
     Route::resource('permissions',PermissionController::class);
 });

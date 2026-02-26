@@ -4,7 +4,7 @@
 namespace App\Repositories\Contracts;
 
 
-interface RollRepositoryInterface
+interface RoleRepositoryInterface
 {
     public function all();
     public function find($id);

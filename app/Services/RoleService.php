@@ -4,38 +4,38 @@
 namespace App\Services;
 
 
-use App\Repositories\Contracts\RollRepositoryInterface;
+use App\Repositories\Contracts\RoleRepositoryInterface;
 use Illuminate\Http\Request;
 
-class RollService
+class RoleService
 {
     protected $repo;
-    public function __construct(RollRepositoryInterface $rollRepository)
+    public function __construct(RoleRepositoryInterface $rollRepository)
     {
         $this->repo = $rollRepository;
     }
 
-    public function getAllRolls()
+    public function getAllRoles()
     {
         return $this->repo->all();
     }
 
-    public function getRoll($id)
+    public function getRole($id)
     {
         return $this->repo->find($id);
     }
 
-    public function createRoll(Request $request)
+    public function createRole(Request $request)
     {
         return $this->repo->create($request->only('name','guard_name'));
     }
 
-    public function updateRoll(Request $request, $id)
+    public function updateRole(Request $request, $id)
     {
         return $this->repo->update($id, $request->only('name','guard_name'));
     }
 
-    public function deleteRoll($id)
+    public function deleteRole($id)
     {
         return $this->repo->delete($id);
     }

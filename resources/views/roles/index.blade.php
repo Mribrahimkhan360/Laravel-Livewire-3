@@ -74,7 +74,7 @@
         <div class="table-container p-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="mb-0">Role List</h2>
-                <a href="{{ route('permissions.create') }}" class="btn btn-primary">Add Role</a>
+                <a href="{{ route('roles.create') }}" class="btn btn-primary">Add Role</a>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered">
@@ -86,15 +86,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($permissions as $permission)
+                    @foreach($roles as $role)
                         <tr>
-                            <td>{{ $permission->name }}</td>
-                            <td>{{ $permission->guard_name }}</td>
+                            <td>{{ $role->name }}</td>
+                            <td>{{ $role->guard_name }}</td>
                             <td class="text-center">
-                                <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-primary btn-sm">
+                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm">
                                     <i class="bi bi-pencil-square"></i> Edit
                                 </a>
-                                <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST" style="display:inline-block;">
+                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')">

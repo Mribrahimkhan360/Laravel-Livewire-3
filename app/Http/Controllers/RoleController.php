@@ -18,21 +18,35 @@ class RoleController extends Controller
 
     public function index()
     {
-        $rolls = $this->service->getAllRoles();
-        return view('rolls.index',compact('rolls'));
+        $roles = $this->service->getAllRoles();
+        return view('roles.index',compact('roles'));
     }
     public function create()
     {
-        return view('rolls.create');
+        return view('roles.create');
     }
+
+    public function edit($id)
+    {
+        $role = $this->service->findUserById($id);
+        return view('roles.edit',compact('role'));
+    }
+
     public function store(RoleRequest $request)
     {
         $this->service->createRole($request);
-        return redirect()->route('rolls.index')->with('success', 'Role created successfully.');
+        return redirect()->route('roles.index')->with('success', 'Role created successfully.');
     }
+
+    public function update(RoleRequest $request, $id)
+    {
+        $this->service->updateRole($request, $id);
+        return redirect()->route('roles.index')->with('success','Role updated successfully.');
+    }
+
     public function destroy($id)
     {
         $this->service->deleteRole($id);
-        return redirect()->back()->with('success','User delete successfully!');
+        return redirect()->back()->with('success','Role delete successfully!');
     }
 }

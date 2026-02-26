@@ -42,7 +42,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="rolePermissionDropdown">
                     <li>
-                        <a class="dropdown-item" href="{{ route('rolls.index') }}">Roles</a>
+                        <a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="{{ route('permissions.index') }}">Permissions</a>

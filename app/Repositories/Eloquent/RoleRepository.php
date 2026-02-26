@@ -9,9 +9,9 @@ class RoleRepository implements RoleRepositoryInterface
 {
     protected $model;
 
-    public function __construct(Role $roll)
+    public function __construct(Role $role)
     {
-        $this->model = $roll;
+        $this->model = $role;
     }
 
     public function all()

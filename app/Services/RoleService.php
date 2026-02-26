@@ -19,6 +19,10 @@ class RoleService
     {
         return $this->repo->all();
     }
+    public function findUserById($id)
+    {
+        return $this->repo->find($id);
+    }
 
     public function getRole($id)
     {

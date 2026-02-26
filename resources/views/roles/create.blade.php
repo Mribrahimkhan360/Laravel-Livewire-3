@@ -48,7 +48,7 @@
 
                 <ul class="dropdown-menu" :class="{ 'show': open }">
                     <li>
-                        <a href="{{ route('rolls.index') }}" class="dropdown-item">
+                        <a href="{{ route('roles.index') }}" class="dropdown-item">
                             Roles
                         </a>
                     </li>
@@ -105,7 +105,7 @@
 
                 <div class="card-body">
                     {{--  <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">--}}
-                    <form action="{{ route('rolls.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('roles.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row g-3">
 
@@ -121,16 +121,10 @@
                                 <input type="text" name="guard_name" id="guard_name" class="form-control" placeholder="Enter guard name" required>
                             </div>
 
-                            <!-- Optional: Add Price or Discount -->
-                            {{-- <div class="col-md-6">
-                                <livewire:product-discount />
-                            </div> --}}
-
                         </div>
 
-
                         <!-- Buttons -->
-                        <div class="text-end">
+                        <div class="text-end mt-2">
                             <button type="reset" class="btn btn-secondary">Reset</button>
                             <button type="submit" class="btn btn-success">Create Roll</button>
                         </div>

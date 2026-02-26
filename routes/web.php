@@ -32,6 +32,6 @@ Route::middleware('auth')->group(function(){
     Route::resource('users',UserController::class);
 
     //RollController
-    Route::resource('rolls',RoleController::class);
+    Route::resource('roles',RoleController::class);
     Route::resource('permissions',PermissionController::class);
 });

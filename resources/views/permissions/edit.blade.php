@@ -42,7 +42,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="rolePermissionDropdown">
                     <li>
-                        <a class="dropdown-item" href="{{ route('rolls.index') }}">Roles</a>
+                        <a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="{{ route('permissions.index') }}">Permissions</a>
@@ -67,32 +67,34 @@
         <nav class="navbar navbar-light bg-light border-bottom">
             <div class="container-fluid">
                 <p></p>
-                <h5 class="ms-3 mb-0">Roll List</h5>
+                <h5 class="ms-3 mb-0">Role List</h5>
             </div>
         </nav>
 
         <div class="table-container p-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="mb-0">Roll List</h2>
-                <a href="{{ route('rolls.create') }}" class="btn btn-primary">Add Roll</a>
+                <h2 class="mb-0">Role List</h2>
+                <a href="{{ route('roles.create') }}" class="btn btn-primary">Add Role</a>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered">
                     <thead class="thead-dark">
                     <tr>
                         <th>Name</th>
+                        <th>Guard Name</th>
                         <th class="text-center">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($rolls as $roll)
+                    @foreach($roles as $role)
                         <tr>
-                            <td>{{ $roll->name }}</td>
+                            <td>{{ $role->name }}</td>
+                            <td>{{ $role->guard_name }}</td>
                             <td class="text-center">
-                                <a href="{{ route('rolls.edit', $roll->id) }}" class="btn btn-primary btn-sm">
+                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm">
                                     <i class="bi bi-pencil-square"></i> Edit
                                 </a>
-                                <form action="{{ route('rolls.destroy', $roll->id) }}" method="POST" style="display:inline-block;">
+                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display:inline-block;">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')">

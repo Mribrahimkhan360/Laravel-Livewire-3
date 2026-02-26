@@ -36,19 +36,19 @@
             </li>
             <li>
                 <a href="{{route('users.index')}}" class="nav-link text-white">
-                    User
+                    <i class="bi bi-gear me-3"></i> User
                 </a>
             </li>
 
             <li class="nav-item dropdown" x-data="{ open: false }">
                 <a href="#" class="nav-link text-white" role="button"
                    @click.prevent="open = !open">
-                    Role & Permission
+                    <i class="bi bi-gear me-3"></i>  Role & Permission
                 </a>
 
                 <ul class="dropdown-menu" :class="{ 'show': open }">
                     <li>
-                        <a href="{{ route('rolls.index') }}" class="dropdown-item">
+                        <a href="{{ route('roles.index') }}" class="dropdown-item">
                             Roles
                         </a>
                     </li>
@@ -61,7 +61,6 @@
             </li>
 
             <li>
-                {{--                <form action="{{ route('logout') }}" method="POST">--}}
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="nav-link text-white border-0 bg-transparent">
@@ -78,13 +77,13 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
             <div class="container-fluid">
                 <a href=""></a>
-                <h5 class="ms-3 mb-0">Create Product</h5>
+                <h5 class="ms-3 mb-0">Create Roll</h5>
             </div>
         </nav>
         <div class="container my-5">
             <div class="card shadow-lg">
                 <div class="card-header bg-primary text-white flex">
-                    <h4 class="mb-0">Add New Product</h4>
+                    <h4 class="mb-0">Add New Roll</h4>
                     <p>
                     @if(session('success'))
                         <div class="alert alert-success alert-dismissible fade show text-green-800" role="alert">
@@ -106,29 +105,29 @@
 
                 <div class="card-body">
                     {{--  <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">--}}
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('roles.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="row">
+                        <div class="row g-3">
 
-                            <!-- Product Name -->
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Product Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="Enter product name"/>
+                            <!-- Role Name -->
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Role Name</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Enter role name" required>
                             </div>
 
-
-                            <!-- Price -->
-                            {{-- <livewire:product-discount />--}}
-
+                            <!-- Guard Name -->
+                            <div class="col-md-6">
+                                <label for="guard_name" class="form-label">Guard Name</label>
+                                <input type="text" name="guard_name" id="guard_name" class="form-control" placeholder="Enter guard name" required>
+                            </div>
 
                         </div>
 
                         <!-- Buttons -->
-                        <div class="text-end">
+                        <div class="text-end mt-2">
                             <button type="reset" class="btn btn-secondary">Reset</button>
-                            <button type="submit" class="btn btn-success">Add Product</button>
+                            <button type="submit" class="btn btn-success">Create Roll</button>
                         </div>
-
                     </form>
                 </div>
             </div>

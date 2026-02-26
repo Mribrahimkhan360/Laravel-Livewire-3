@@ -29,7 +29,6 @@ new class extends Component {
                     <th>#</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Flag</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -39,13 +38,6 @@ new class extends Component {
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>
-                            <span class="badge
-                                {{ $user->flag == 'admin' ? 'bg-danger' :
-                                   ($user->flag == 'custom_user' ? 'bg-primary' : 'bg-secondary') }}">
-                                {{ ucfirst(str_replace('_',' ',$user->flag)) }}
-                            </span>
-                        </td>
                         <td>
                             <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">Edit</a>
                             <form action="{{ route('users.destroy', $user->id) }}" method="POST"

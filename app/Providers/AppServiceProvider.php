@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Repositories\Contracts\AuthRepositoryInterface;
+use App\Repositories\Contracts\RollRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Eloquent\AuthRepository;
+use App\Repositories\Eloquent\RollRepository;
 use App\Repositories\Eloquent\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -19,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
         //
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class );
+        $this->app->bind(RollRepositoryInterface::class, RollRepository::class);
+
 
     }
 

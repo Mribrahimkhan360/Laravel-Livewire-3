@@ -38,7 +38,7 @@
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" id="rolePermissionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Role & Permission
+                    <i class="bi bi-gear me-0"></i>  Role & Permission
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="rolePermissionDropdown">
                     <li>
@@ -67,62 +67,43 @@
         <nav class="navbar navbar-light bg-light border-bottom">
             <div class="container-fluid">
                 <p></p>
-                <h5 class="ms-3 mb-0">Product List</h5>
+                <h5 class="ms-3 mb-0">Roll List</h5>
             </div>
         </nav>
 
         <div class="table-container p-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="mb-0">Products Stock List</h2>
-{{--                <a href="{{ route('product.create') }}" class="btn btn-primary">Add Products</a>--}}
-                <a href="{{ route('product.create') }}" class="btn btn-primary">Add Products</a>
+                <h2 class="mb-0">Roll List</h2>
+                <a href="{{ route('rolls.create') }}" class="btn btn-primary">Add Roll</a>
             </div>
             <div class="table-responsive">
-{{--                @if($products->count() > 0)--}}
-{{--                    <table class="table table-striped table-hover align-middle">--}}
-{{--                        <thead>--}}
-{{--                        <tr>--}}
-{{--                            <th>#</th>--}}
-{{--                            <th>Name</th>--}}
-{{--                            <th>sku</th>--}}
-{{--                            <th>category</th>--}}
-
-{{--                            <th>brand</th>--}}
-{{--                            <th>price</th>--}}
-{{--                            <th>discount price</th>--}}
-{{--                            <th>stock</th>--}}
-{{--                            <th>image</th>--}}
-{{--                            <th>description</th>--}}
-{{--                            <th>featured</th>--}}
-{{--                            <th>status</th>--}}
-{{--                            <th>Actions</th>--}}
-{{--                        </tr>--}}
-{{--                        </thead>--}}
-{{--                        <tbody>--}}
-{{--                        @foreach($products as $product)--}}
-{{--                            <tr>--}}
-{{--                                <td>{{ $loop->iteration }}</td>--}}
-{{--                                <td>{{ $product->name }}</td>--}}
-{{--                                <td>{{ $product->number }}</td>--}}
-
-{{--                                <td>--}}
-{{--                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-primary">Edit</a>--}}
-{{--                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline-block;">--}}
-{{--                                        @csrf--}}
-{{--                                        @method('DELETE')--}}
-{{--                                        <button class="btn btn-sm btn-danger">Delete</button>--}}
-{{--                                    </form>--}}
-{{--                                </td>--}}
-{{--                            </tr>--}}
-{{--                        @endforeach--}}
-{{--                        </tbody>--}}
-{{--                    </table>--}}
-{{--                    <div class="d-flex justify-content-center mt-4">--}}
-{{--                        {{ $products->links() }}--}}
-{{--                    </div>--}}
-{{--                @else--}}
-{{--                    <p>No products found.</p>--}}
-{{--                @endif--}}
+                <table class="table table-striped table-hover table-bordered">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($rolls as $roll)
+                        <tr>
+                            <td>{{ $roll->name }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('rolls.edit', $roll->id) }}" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <form action="{{ route('rolls.destroy', $roll->id) }}" method="POST" style="display:inline-block;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

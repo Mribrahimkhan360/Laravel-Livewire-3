@@ -32,11 +32,23 @@
 
             <li>
                 <a href="{{route('users.index')}}" class="nav-link text-white">
-                    <i class="bi bi-person me-3"></i>User
+                    User
                 </a>
             </li>
 
-            <li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="rolePermissionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Role & Permission
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="rolePermissionDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('rolls.index') }}">Roles</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('permissions.index') }}">Permissions</a>
+                    </li>
+                </ul>
+            </li>
                 {{--                <form action="{{ route('logout') }}" method="POST">--}}
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
@@ -81,11 +93,9 @@
                 </div>
 
                 <div class="card-body">
-                    {{--  <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">--}}
                     <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-
                             <!-- Product Name -->
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">User Name</label>
@@ -96,7 +106,7 @@
                                 <input type="text" name="email" class="form-control" placeholder="Enter Email name"/>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="flag" class="form-label">User Type</label>
+                                <label for="flag" class="form-label">Rolls</label>
                                 <select name="flag" id="flag" class="form-control">
                                     <option value="">-- Select User Type --</option>
                                     <option value="admin">Admin</option>
@@ -129,7 +139,7 @@
 
     </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 @livewireScripts
 </body>
 </html>

@@ -579,10 +579,10 @@ class RoleController extends Controller
 {
     public function __construct(protected RoleService $roleService)
     {
-        $this->middleware('permission:view roles')->only(['index', 'show']);
-        $this->middleware('permission:create roles')->only(['store']);
-        $this->middleware('permission:edit roles')->only(['update']);
-        $this->middleware('permission:delete roles')->only(['destroy']);
+        $this->middleware('permissions:view roles')->only(['index', 'show']);
+        $this->middleware('permissions:create roles')->only(['store']);
+        $this->middleware('permissions:edit roles')->only(['update']);
+        $this->middleware('permissions:delete roles')->only(['destroy']);
     }
 
     public function index(): JsonResponse
@@ -649,10 +649,10 @@ class UserController extends Controller
 {
     public function __construct(protected UserService $userService)
     {
-        $this->middleware('permission:view users')->only(['index', 'show']);
-        $this->middleware('permission:create users')->only(['store']);
-        $this->middleware('permission:edit users')->only(['update']);
-        $this->middleware('permission:delete users')->only(['destroy']);
+        $this->middleware('permissions:view users')->only(['index', 'show']);
+        $this->middleware('permissions:create users')->only(['store']);
+        $this->middleware('permissions:edit users')->only(['update']);
+        $this->middleware('permissions:delete users')->only(['destroy']);
     }
 
     public function index(): JsonResponse
@@ -825,7 +825,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        // Super admin bypasses all permission checks
+        // Super admin bypasses all permissions checks
         Gate::before(function ($user, $ability) {
             return $user->hasRole('super-admin') ? true : null;
         });

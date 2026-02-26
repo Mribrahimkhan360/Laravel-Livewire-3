@@ -37,6 +37,19 @@
             </a>
         </li>
 
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="rolePermissionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Role & Permission
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="rolePermissionDropdown">
+                <li>
+                    <a class="dropdown-item" href="{{ route('rolls.index') }}">Roles</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('permissions.index') }}">Permissions</a>
+                </li>
+            </ul>
+        </li>
         <li>
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
@@ -57,6 +70,8 @@
     </nav>
     <livewire:dashboard />
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
     @livewireScripts
 </body>
 </html>

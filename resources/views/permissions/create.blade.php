@@ -36,20 +36,26 @@
             </li>
             <li>
                 <a href="{{route('users.index')}}" class="nav-link text-white">
-                    <i class="bi bi-house-door me-3"></i>  User
+                    User
                 </a>
             </li>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" id="rolePermissionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <li class="nav-item dropdown" x-data="{ open: false }">
+                <a href="#" class="nav-link text-white" role="button"
+                   @click.prevent="open = !open">
                     Role & Permission
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="rolePermissionDropdown">
+
+                <ul class="dropdown-menu" :class="{ 'show': open }">
                     <li>
-                        <a class="dropdown-item" href="{{ route('rolls.index') }}">Roles</a>
+                        <a href="{{ route('rolls.index') }}" class="dropdown-item">
+                            Roles
+                        </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{{ route('permissions.index') }}">Permissions</a>
+                        <a href="{{ route('permissions.index') }}" class="dropdown-item">
+                            Permissions
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -130,9 +136,8 @@
 
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
 @livewireScripts
-
 </body>
 </html>

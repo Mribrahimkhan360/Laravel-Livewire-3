@@ -67,21 +67,21 @@
         <nav class="navbar navbar-light bg-light border-bottom">
             <div class="container-fluid">
                 <p></p>
-                <h5 class="ms-3 mb-0">Role List</h5>
+                <h5 class="ms-3 mb-0">Permission List</h5>
             </div>
         </nav>
 
         <div class="table-container p-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="mb-0">Role List</h2>
-                <a href="{{ route('permissions.create') }}" class="btn btn-primary">Add Role</a>
+                <h2 class="mb-0">Permission List</h2>
+                <a href="{{ route('permissions.create') }}" class="btn btn-primary">Add Permission</a>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered">
                     <thead class="thead-dark">
                     <tr>
                         <th>Name</th>
-                        <th>Guard Name</th>
+{{--                        <th>Guard Name</th>--}}
                         <th class="text-center">Actions</th>
                     </tr>
                     </thead>
@@ -89,7 +89,7 @@
                     @foreach($permissions as $permission)
                         <tr>
                             <td>{{ $permission->name }}</td>
-                            <td>{{ $permission->guard_name }}</td>
+{{--                            <td>{{ $permission->guard_name }}</td>--}}
                             <td class="text-center">
                                 <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-primary btn-sm">
                                     <i class="bi bi-pencil-square"></i> Edit

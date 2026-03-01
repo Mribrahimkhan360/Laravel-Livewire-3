@@ -116,11 +116,11 @@
                                 <input type="text" name="name" id="name" class="form-control" value="{{ $role->name }}" required>
                             </div>
 
-                            <!-- Guard Name -->
-                            <div class="col-md-6">
-                                <label for="guard_name" class="form-label">Guard Name</label>
-                                <input type="text" name="guard_name" id="guard_name" class="form-control" value="{{ $role->guard_name }}" required>
-                            </div>
+{{--                            <!-- Guard Name -->--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <label for="guard_name" class="form-label">Guard Name</label>--}}
+{{--                                <input type="text" name="guard_name" id="guard_name" class="form-control" value="{{ $role->guard_name }}" required>--}}
+{{--                            </div>--}}
 
                             <!-- Optional: Add Price or Discount -->
                             {{-- <div class="col-md-6">
@@ -133,7 +133,7 @@
                         <!-- Buttons -->
                         <div class="text-end mt-2">
                             <button type="reset" class="btn btn-secondary">Reset</button>
-                            <button type="submit" class="btn btn-success">Edit Roll</button>
+                            <button type="submit" class="btn btn-success">Edit Role</button>
                         </div>
 
                     </form>

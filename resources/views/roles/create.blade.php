@@ -77,13 +77,13 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
             <div class="container-fluid">
                 <a href=""></a>
-                <h5 class="ms-3 mb-0">Create Roll</h5>
+                <h5 class="ms-3 mb-0">Create Role</h5>
             </div>
         </nav>
         <div class="container my-5">
             <div class="card shadow-lg">
                 <div class="card-header bg-primary text-white flex">
-                    <h4 class="mb-0">Add New Roll</h4>
+                    <h4 class="mb-0">Add New Role</h4>
                     <p>
                     @if(session('success'))
                         <div class="alert alert-success alert-dismissible fade show text-green-800" role="alert">
@@ -115,18 +115,18 @@
                                 <input type="text" name="name" id="name" class="form-control" placeholder="Enter role name" required>
                             </div>
 
-                            <!-- Guard Name -->
-                            <div class="col-md-6">
-                                <label for="guard_name" class="form-label">Guard Name</label>
-                                <input type="text" name="guard_name" id="guard_name" class="form-control" placeholder="Enter guard name" required>
-                            </div>
+{{--                            <!-- Guard Name -->--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <label for="guard_name" class="form-label">Guard Name</label>--}}
+{{--                                <input type="text" name="guard_name" id="guard_name" class="form-control" placeholder="Enter guard name" required>--}}
+{{--                            </div>--}}
 
                         </div>
 
                         <!-- Buttons -->
                         <div class="text-end mt-2">
                             <button type="reset" class="btn btn-secondary">Reset</button>
-                            <button type="submit" class="btn btn-success">Create Roll</button>
+                            <button type="submit" class="btn btn-success">Create Role</button>
                         </div>
 
                     </form>

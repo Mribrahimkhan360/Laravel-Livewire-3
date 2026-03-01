@@ -77,13 +77,13 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
             <div class="container-fluid">
                 <a href=""></a>
-                <h5 class="ms-3 mb-0">Create Roll</h5>
+                <h5 class="ms-3 mb-0">Create Permission</h5>
             </div>
         </nav>
         <div class="container my-5">
             <div class="card shadow-lg">
                 <div class="card-header bg-primary text-white flex">
-                    <h4 class="mb-0">Add New Roll</h4>
+                    <h4 class="mb-0">Add New Permission</h4>
                     <p>
                     @if(session('success'))
                         <div class="alert alert-success alert-dismissible fade show text-green-800" role="alert">
@@ -105,28 +105,28 @@
 
                 <div class="card-body">
                     {{--  <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">--}}
-                    <form action="{{ route('roles.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('permissions.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row g-3">
 
-                            <!-- Role Name -->
+                            <!-- Permission Name -->
                             <div class="col-md-6">
                                 <label for="name" class="form-label">Role Name</label>
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Enter role name" required>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Enter permission name" required>
                             </div>
 
                             <!-- Guard Name -->
-                            <div class="col-md-6">
-                                <label for="guard_name" class="form-label">Guard Name</label>
-                                <input type="text" name="guard_name" id="guard_name" class="form-control" placeholder="Enter guard name" required>
-                            </div>
+{{--                            <div class="col-md-6">--}}
+{{--                                <label for="guard_name" class="form-label">Guard Name</label>--}}
+{{--                                <input type="text" name="guard_name" id="guard_name" class="form-control" placeholder="Enter guard name" required>--}}
+{{--                            </div>--}}
 
                         </div>
 
                         <!-- Buttons -->
                         <div class="text-end mt-2">
                             <button type="reset" class="btn btn-secondary">Reset</button>
-                            <button type="submit" class="btn btn-success">Create Roll</button>
+                            <button type="submit" class="btn btn-success">Create Permission</button>
                         </div>
                     </form>
                 </div>

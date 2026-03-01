@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PermissionRequest;
 use App\Http\Requests\RoleRequest;
+use App\Services\PermissionService;
 use App\Services\RoleService;
 use Illuminate\Http\Request;
 
@@ -18,7 +20,7 @@ class PermissionController extends Controller
 
     public function index()
     {
-        $permissions = $this->service->getAllPermissions();
+        $permissions = $this->service->getAllPermission();
         return view('permissions.index',compact('permissions'));
     }
     public function create()
@@ -28,25 +30,25 @@ class PermissionController extends Controller
 
     public function edit($id)
     {
-        $permissions = $this->service->findUserById($id);
+        $permissions = $this->service->findPermissionById($id);
         return view('permissions.edit',compact('permissions'));
     }
 
-    public function store(RoleRequest $request)
+    public function store(PermissionRequest $request)
     {
-        $this->service->createRole($request);
+        $this->service->createPermission($request);
         return redirect()->route('permissions.index')->with('success', 'Permissions created successfully.');
     }
 
-    public function update(RoleRequest $request, $id)
+    public function update(PermissionRequest $request, $id)
     {
-        $this->service->updateRole($request, $id);
+        $this->service->updatePermission($request, $id);
         return redirect()->route('permissions.index')->with('success','Permissions updated successfully.');
     }
 
     public function destroy($id)
     {
-        $this->service->deleteRole($id);
+        $this->service->deletePermission($id);
         return redirect()->back()->with('success','Permissions delete successfully!');
     }
 }

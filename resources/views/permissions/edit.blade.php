@@ -81,7 +81,7 @@
                     <thead class="thead-dark">
                     <tr>
                         <th>Name</th>
-                        <th>Guard Name</th>
+{{--                        <th>Guard Name</th>--}}
                         <th class="text-center">Actions</th>
                     </tr>
                     </thead>
@@ -89,7 +89,7 @@
                     @foreach($roles as $role)
                         <tr>
                             <td>{{ $role->name }}</td>
-                            <td>{{ $role->guard_name }}</td>
+{{--                            <td>{{ $role->guard_name }}</td>--}}
                             <td class="text-center">
                                 <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm">
                                     <i class="bi bi-pencil-square"></i> Edit

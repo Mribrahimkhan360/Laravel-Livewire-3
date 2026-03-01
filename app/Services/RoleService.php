@@ -4,24 +4,28 @@
 namespace App\Services;
 
 
+use App\Repositories\Contracts\PermissionRepositoryInterface;
 use App\Repositories\Contracts\RoleRepositoryInterface;
 use Illuminate\Http\Request;
 
 class RoleService
 {
-    protected $repo;
-    public function __construct(RoleRepositoryInterface $rollRepository)
+    protected $roleRepository;
+    protected $permissionRepository;
+    public function __construct(RoleRepositoryInterface $roleRepository,PermissionRepositoryInterface $permissionRepository)
     {
-        $this->repo = $rollRepository;
+        $this->roleRepository        = $roleRepository;
+        $this->permissionRepository  = $permissionRepository;
+
     }
 
     public function getAllRoles()
     {
-        return $this->repo->all();
+        return $this->roleRepository->all();
     }
     public function findUserById($id)
     {
-        return $this->repo->find($id);
+        return $this->roleRepository->find($id);
     }
 
 //    public function getRole($id)
@@ -29,18 +33,23 @@ class RoleService
 //        return $this->repo->find($id);
 //    }
 
-    public function createRole(Request $request)
+    public function createRole(Request $request,$roleId,$permissionIds)
     {
-        return $this->repo->create([
+        $role = $this->roleRepository->find($roleId);
+        $role->syncPermissions($permissionIds);
+        return $this->roleRepository->create([
             'name' => $request->name,
             'guard_name' => 'null', // ✅ manually set
         ]);
 
     }
 
-    public function updateRole(Request $request, $id)
+    public function updateRole(Request $request, $id, $roleId,$permissionIds)
     {
-        return $this->repo->update($id, [
+//        $role = $this->roleRepository->find($roleId);
+//        $role->syncPermissions($permissionIds);
+
+        return $this->roleRepository->update($id, [
             'name' => $request->name,
             'guard_name' => 'null',
         ]);
@@ -48,6 +57,15 @@ class RoleService
 
     public function deleteRole($id)
     {
-        return $this->repo->delete($id);
+        return $this->roleRepository->delete($id);
     }
+
+
+//    public function assignPermissionsToRole($roleId, array $permissionIds)
+//    {
+//        $role = $this->roleRepository->find($roleId);
+//
+//        // Spatie method: syncPermissions
+//        $role->syncPermissions($permissionIds);
+//    }
 }

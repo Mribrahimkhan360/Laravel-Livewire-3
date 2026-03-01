@@ -7,45 +7,55 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    @livewireStyles
 </head>
 <body>
-<div class="d-flex">
-
-    <!-- Sidebar -->
-    <div class="bg-dark text-white p-3 position-fixed top-0 start-0 vh-100"
-         style="width: 220px;">
+<div class="d-flex" id="wrapper">
+    <div class="bg-dark text-white p-3" id="sidebar-wrapper"
+         style="min-width: 221px; min-height: 100vh;">
 
         <h4 class="text-center mb-4">Dashboard</h4>
 
-        <ul class="nav nav-pills flex-column mb-auto" style="margin-left: 18px">
+        <ul class="nav nav-pills flex-column mb-auto">
 
             <li class="nav-item">
                 <a href="/dashboard" class="nav-link text-white">
-                    Dashboard
+                    <i class="bi bi-house-door me-3"></i> Dashboard
                 </a>
             </li>
 
             <li>
                 <a href="{{route('product')}}" class="nav-link text-white">
-                    Product
+                    <i class="bi bi-person me-3"></i>Product
+                </a>
+            </li>
+            <li>
+                <a href="{{route('product')}}" class="nav-link text-white">
+                    <i class="bi bi-person me-3"></i>Product
                 </a>
             </li>
             <li>
                 <a href="{{route('users.index')}}" class="nav-link text-white">
-                    User
+                    <i class="bi bi-gear me-3"></i> User
                 </a>
             </li>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" id="rolePermissionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-gear me-0"></i>  Role & Permission
+            <li class="nav-item dropdown" x-data="{ open: false }">
+                <a href="#" class="nav-link text-white" role="button"
+                   @click.prevent="open = !open">
+                    <i class="bi bi-gear me-3"></i>  Role & Permission
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="rolePermissionDropdown">
+
+                <ul class="dropdown-menu" :class="{ 'show': open }">
                     <li>
-                        <a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a>
+                        <a href="{{ route('roles.index') }}" class="dropdown-item">
+                            Roles
+                        </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{{ route('permissions.index') }}">Permissions</a>
+                        <a href="{{ route('permissions.index') }}" class="dropdown-item">
+                            Permissions
+                        </a>
                     </li>
                 </ul>
             </li>
@@ -54,65 +64,87 @@
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="nav-link text-white border-0 bg-transparent">
-                        <i class="bi bi-gear me-0"></i> Logout
+                        <i class="bi bi-gear me-3"></i> Logout
                     </button>
                 </form>
+
             </li>
 
         </ul>
     </div>
 
-    <!-- Page Content -->
-    <div class="flex-grow-1" style="margin-left: 220px;">
-        <nav class="navbar navbar-light bg-light border-bottom">
+    <div class="flex-grow-1" id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
             <div class="container-fluid">
-                <p></p>
-                <h5 class="ms-3 mb-0">Role List</h5>
+                <a href=""></a>
+                <h5 class="ms-3 mb-0">Edit Permission</h5>
             </div>
         </nav>
+        <div class="container my-5">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white flex">
+                    <h4 class="mb-0">Edit Permission</h4>
+                    <p>
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show text-green-800" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
+                        </p>
+                        <p>
+                        @if($errors->any())
+                            @foreach($errors->all() as $error)
+                                <p class="alert alert-success alert-dismissible fade show ">
+                                    {{ $error }}
+                                </p>
+                                @endforeach
+                                @endif
+                                </p>
+                </div>
 
-        <div class="table-container p-5">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="mb-0">Role List</h2>
-                <a href="{{ route('roles.create') }}" class="btn btn-primary">Add Role</a>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-striped table-hover table-bordered">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>Name</th>
-{{--                        <th>Guard Name</th>--}}
-                        <th class="text-center">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($roles as $role)
-                        <tr>
-                            <td>{{ $role->name }}</td>
-{{--                            <td>{{ $role->guard_name }}</td>--}}
-                            <td class="text-center">
-                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary btn-sm">
-                                    <i class="bi bi-pencil-square"></i> Edit
-                                </a>
-                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display:inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?')">
-                                        <i class="bi bi-trash"></i> Delete
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                <div class="card-body">
+                    {{--  <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">--}}
+                    <form action="{{ route('permissions.update',$permission->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="row g-3">
+
+                            <!-- Role Name -->
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Permission Name</label>
+                                <input type="text" name="name" id="name" class="form-control" value="{{ $permission->name }}" required>
+                            </div>
+
+                        {{--                            <!-- Guard Name -->--}}
+                        {{--                            <div class="col-md-6">--}}
+                        {{--                                <label for="guard_name" class="form-label">Guard Name</label>--}}
+                        {{--                                <input type="text" name="guard_name" id="guard_name" class="form-control" value="{{ $role->guard_name }}" required>--}}
+                        {{--                            </div>--}}
+
+                        <!-- Optional: Add Price or Discount -->
+                            {{-- <div class="col-md-6">
+                                <livewire:product-discount />
+                            </div> --}}
+
+                        </div>
+
+
+                        <!-- Buttons -->
+                        <div class="text-end mt-2">
+                            <button type="reset" class="btn btn-secondary">Reset</button>
+                            <button type="submit" class="btn btn-success">Edit Permission</button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 @livewireScripts
-
 </body>
 </html>

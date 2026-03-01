@@ -110,16 +110,34 @@
                         <div class="row g-3">
 
                             <!-- Role Name -->
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="name" class="form-label">Role Name</label>
                                 <input type="text" name="name" id="name" class="form-control" placeholder="Enter role name" required>
                             </div>
 
-{{--                            <!-- Guard Name -->--}}
-{{--                            <div class="col-md-6">--}}
-{{--                                <label for="guard_name" class="form-label">Guard Name</label>--}}
-{{--                                <input type="text" name="guard_name" id="guard_name" class="form-control" placeholder="Enter guard name" required>--}}
+{{--                            <!-- Role Name -->--}}
+{{--                            <div class="col-md-4">--}}
+{{--                                <label for="role_id">Select Role:</label>--}}
+{{--                                <select name="role_id" id="role_id" required>--}}
+{{--                                    <option value="">-- Select Role --</option>--}}
+{{--                                    @foreach($roles as $role)--}}
+{{--                                        <option value="{{ $role->id }}">{{ $role->name }}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
 {{--                            </div>--}}
+
+                            <!-- Permission Name -->
+                            <div class="col-md-4">
+                                <label for="role_id" class="form-label fw-bold">Check Permissions:</label>
+                                <div class="list-group">
+                                    @foreach($permissions as $permission)
+                                        <label class="list-group-item d-flex align-items-center">
+                                            <input class="form-check-input me-2" type="checkbox" name="permissions[]" value="{{ $permission->id }}">
+                                            <span>{{ $permission->name }}</span>
+                                        </label>
+                                    @endforeach
+                                </div>
+                            </div>
 
                         </div>
 

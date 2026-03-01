@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PermissionRequest;
 use App\Http\Requests\RoleRequest;
+use App\Models\Role;
 use App\Services\PermissionService;
 use App\Services\RoleService;
 use Illuminate\Http\Request;
@@ -12,10 +13,12 @@ use Illuminate\Http\Request;
 class PermissionController extends Controller
 {
     protected $service;
+    protected $roleService;
 
-    public function __construct(PermissionService $service)
+    public function __construct(PermissionService $service,RoleService $roleService)
     {
-        $this->service = $service;
+        $this->service      = $service;
+        $this->roleService  = $roleService;
     }
 
     public function index()
@@ -30,8 +33,10 @@ class PermissionController extends Controller
 
     public function edit($id)
     {
-        $permissions = $this->service->findPermissionById($id);
-        return view('permissions.edit',compact('permissions'));
+        $roles = $this->roleService->getAllRoles();
+        $permission = $this->service->findPermissionById($id); // singular
+
+        return view('permissions.edit', compact('permission','roles')); // singular
     }
 
     public function store(PermissionRequest $request)
